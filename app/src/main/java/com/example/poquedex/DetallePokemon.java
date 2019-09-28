@@ -2,6 +2,7 @@ package com.example.poquedex;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,15 +28,16 @@ public class DetallePokemon extends AppCompatActivity {
         img_detallepokemon_pokemon=findViewById(R.id.img_detallepokemon_pokemon);
         txt_detallepokemon_nombre=findViewById(R.id.txt_detallepokemon_nombre);
         ll_detallepokemon_ataques=findViewById(R.id.ll_detallepokemon_ataques);
-        CargarPokeDatos();
+        Intent i = getIntent();
+        CargarPokeDatos(i.getIntExtra("id",1));
     }
-    void CargarPokeDatos(){
+    void CargarPokeDatos(int codpokemon){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         InterfazPokemon ip = retrofit.create(InterfazPokemon.class);
-        Call<Pokemon> servicio = ip.obtenerPokemon(1);
+        Call<Pokemon> servicio = ip.obtenerPokemon(codpokemon);
         servicio.enqueue(new Callback<Pokemon>() {
             @Override
             public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {

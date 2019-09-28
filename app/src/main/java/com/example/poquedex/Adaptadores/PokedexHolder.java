@@ -2,6 +2,7 @@ package com.example.poquedex.Adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,8 +18,9 @@ public class PokedexHolder extends RecyclerView.ViewHolder {
     TextView nombrepokemon;
     CardView cv;
     Context context;
+    int id;
 
-    public PokedexHolder(@NonNull View itemView, Context c){
+    public PokedexHolder(@NonNull final View itemView, Context c){
         super (itemView);
         this.context=c;
         nombrepokemon=itemView.findViewById(R.id.txt_itempokedex_pokemon);
@@ -27,6 +29,8 @@ public class PokedexHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetallePokemon.class);
+                intent.putExtra("id",id);
+
                 context.startActivity(intent);
             }
         });
