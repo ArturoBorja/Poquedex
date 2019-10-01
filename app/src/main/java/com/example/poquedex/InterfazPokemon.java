@@ -10,4 +10,6 @@ public interface InterfazPokemon {
     Call<Pokedex> obtenerPokedex (@Query("limit") int cantidad);
     @GET("pokemon/{codigo}")
     Call<Pokemon> obtenerPokemon(@Path("codigo") int id);
+    @GET("pokemon/{codigo}")
+    Call<Pokemon> obtenerPokemon(@Path("codigo") String id);
 }

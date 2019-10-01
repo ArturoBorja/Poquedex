@@ -29,9 +29,9 @@ public class DetallePokemon extends AppCompatActivity {
         txt_detallepokemon_nombre=findViewById(R.id.txt_detallepokemon_nombre);
         ll_detallepokemon_ataques=findViewById(R.id.ll_detallepokemon_ataques);
         Intent i = getIntent();
-        CargarPokeDatos(i.getIntExtra("id",1));
+        CargarPokeDatos(i.getStringExtra("id"));
     }
-    void CargarPokeDatos(int codpokemon){
+    void CargarPokeDatos(String codpokemon){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
